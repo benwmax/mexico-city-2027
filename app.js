@@ -100,21 +100,15 @@
         '<a href="#/dates">See the proposed dates →</a></div>') + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker"><i>03</i>Where we stay</p><h2>One hotel, a room for each couple</h2>' +
-        '<div class="feature teal"><span class="chip">Top pick</span><h3>Condesa</h3>' +
-        "<p>Leafy streets, parks, cafés and great restaurants, and easy to get anywhere from. Condesa DF is the first choice, with a few other options ready.</p>" +
-        '<a href="#/stay">See the hotels →</a></div>') + "</section>" +
-
-      '<section class="section">' + reveal(
-        '<p class="kicker"><i>04</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
+        '<p class="kicker"><i>03</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
         '<div class="tile-row two">' + events + "</div>" +
         '<p class="note" style="margin-top:.8rem">A sketch of the days is on the Experiences page. The full itinerary comes once the dates and hotel are set.</p>' +
         '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a> &nbsp; <a href="#/guide">Events guide →</a></p>') + "</section>" +
 
-      '<section class="section">' + reveal('<p class="kicker"><i>05</i>Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
+      '<section class="section">' + reveal('<p class="kicker"><i>04</i>Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker"><i>06</i>What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
+        '<p class="kicker"><i>05</i>What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
       "</div>";
   }
 
@@ -136,6 +130,7 @@
       '<div class="card"><h3>Booking</h3><p>' + esc(f.booking) + "</p></div></div>";
   }
 
+  // Hidden until lodging is decided: add ["stay", "Stay", stay] back to ROUTES to show it.
   function stay() {
     var h = T.hotels;
     return '<div class="page"><h1>Where we stay</h1><p>' + esc(h.summary) + "</p>" +
@@ -212,7 +207,6 @@
     ["", "Home", home],
     ["dates", "Proposed Dates", dates],
     ["flights", "Getting there", flights],
-    ["stay", "Stay", stay],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
     ["around", "Around town", around],
