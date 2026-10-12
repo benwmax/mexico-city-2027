@@ -97,7 +97,7 @@
         '<p class="kicker"><i>02</i>When we go</p><h2>The week before the crowds</h2>' +
         '<div class="feature"><span class="chip">Proposed</span><h3>Oct 21 – 26, 2027</h3>' +
         "<ul><li>Altars, marigolds and parades are building across the city.</li><li>We're home before Grand Prix and Día de Muertos weekend packs the place.</li></ul>" +
-        '<a href="#/dates">See the dates →</a></div>') + "</section>" +
+        '<a href="#/dates">See the proposed dates →</a></div>') + "</section>" +
 
       '<section class="section">' + reveal(
         '<p class="kicker"><i>03</i>Where we stay</p><h2>One hotel, a room for each couple</h2>' +
@@ -119,7 +119,7 @@
   }
 
   function dates() {
-    return '<div class="page"><h1>Dates</h1><p class="muted">F1 week overlaps Día de Muertos in 2027, so that stretch is the busiest of the fall.</p>' +
+    return '<div class="page"><h1>Proposed Dates</h1><p class="muted">F1 week overlaps Día de Muertos in 2027, so that stretch is the busiest of the fall.</p>' +
       T.dates.map(function (d) {
         return '<div class="card ' + (d.pick ? "accent" : "") + '"><h3>' + esc(d.name) + " " +
           pill(d.tag, d.pick ? "pick" : "") + "</h3>" + list(d.why) + "</div>";
@@ -194,7 +194,7 @@
 
   var ROUTES = [
     ["", "Home", home],
-    ["dates", "Dates", dates],
+    ["dates", "Proposed Dates", dates],
     ["flights", "Getting there", flights],
     ["stay", "Stay", stay],
     ["experiences", "Experiences", experiences],
