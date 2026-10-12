@@ -1,16 +1,5 @@
 (function () {
   var T = window.TRIP;
-  var KEY_NAME = "trip.name";
-  var KEY_DEVICE = "trip.device";
-
-  function store(get, k, v) {
-    try {
-      if (get) return localStorage.getItem(k);
-      localStorage.setItem(k, v);
-    } catch (e) { /* private mode: the site still works */ }
-    return null;
-  }
-
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -69,12 +58,6 @@
       }).join("");
   }
 
-  function bookedTable(rows) {
-    return '<div class="table-wrap"><table><tr><th>Couple</th><th>Status</th></tr>' +
-      rows.map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + pill(r[1], /^Booked/.test(r[1]) ? "good" : "warn") + "</td></tr>"; }).join("") +
-      "</table></div>";
-  }
-
   function flights() {
     var f = T.flights;
     return "<h1>Flights</h1><p>" + esc(f.summary) + "</p>" +
@@ -85,7 +68,7 @@
       f.fares.map(function (a) { return "<tr><td>" + esc(a[0]) + "</td><td>" + esc(a[1]) + "</td></tr>"; }).join("") +
       '</table></div><p class="note" style="margin-top:.6rem">Planning estimates, not quotes.</p></div>' +
       '<div class="card accent"><h3>Booking six seats on one flight</h3>' + list(f.tips) + "</div>" +
-      '<div class="card"><h3>Who has booked</h3>' + bookedTable(f.booked) + "</div>";
+      '<div class="card"><h3>Booking</h3><p>' + esc(f.booking) + "</p></div>";
   }
 
   function stay() {
@@ -96,7 +79,7 @@
           '<p class="muted">' + esc(x.area) + " · " + esc(x.rate) + " per night</p><p>" + esc(x.note) + "</p></div>";
       }).join("") +
       '<div class="card"><h3>Booking tips</h3>' + list(h.tips) + "</div>" +
-      '<div class="card"><h3>Who has booked</h3>' + bookedTable(h.booked) + "</div>";
+      '<div class="card"><h3>Booking</h3><p>' + esc(h.booking) + "</p></div>";
   }
 
   function guide() {
@@ -120,57 +103,6 @@
     window.scrollTo(0, 0);
   }
 
-  // "who opened" tracking
-  function deviceId() {
-    var id = store(true, KEY_DEVICE);
-    if (!id) {
-      id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
-      store(false, KEY_DEVICE, id);
-    }
-    return id;
-  }
-
-  function ping(name) {
-    try {
-      fetch("/api/hello", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name: name, device: deviceId() }),
-        keepalive: true
-      }).catch(function () {});
-    } catch (e) { /* tracking is best effort */ }
-  }
-
-  function showWho(name) {
-    var el = document.getElementById("who");
-    el.hidden = false;
-    el.innerHTML = "Hi " + esc(name) + ' · <button type="button" id="switch">not you?</button>';
-    document.getElementById("switch").onclick = function () { openPicker(); };
-  }
-
-  function openPicker() {
-    var picker = document.getElementById("picker");
-    var box = document.getElementById("names");
-    box.innerHTML = T.travelers.map(function (n) { return '<button type="button" data-n="' + esc(n) + '">' + esc(n) + "</button>"; }).join("");
-    picker.hidden = false;
-    box.onclick = function (e) {
-      var n = e.target && e.target.getAttribute && e.target.getAttribute("data-n");
-      if (!n) return;
-      store(false, KEY_NAME, n);
-      picker.hidden = true;
-      showWho(n);
-      ping(n);
-    };
-  }
-
   window.addEventListener("hashchange", render);
   render();
-
-  var saved = store(true, KEY_NAME);
-  if (saved && T.travelers.indexOf(saved) !== -1) {
-    showWho(saved);
-    ping(saved);
-  } else {
-    openPicker();
-  }
 })();

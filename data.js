@@ -1,19 +1,18 @@
 // Trip content. Edit this file to update the site. No sensitive info here (no passport or confirmation numbers).
 window.TRIP = {
-  travelers: ["Bobby", "Tina", "Andi", "Ben", "Connor", "Josh"],
   start: "2027-10-21",
   end: "2027-10-26",
   updated: "2026-10-11",
 
   status: [
     { label: "Dates", value: "Leaning Oct 21 to 26, 2027", tone: "warn" },
-    { label: "Flights", value: "Not booked yet", tone: "warn" },
-    { label: "Hotel", value: "Not booked yet", tone: "warn" }
+    { label: "Flights", value: "Everyone books their own", tone: "" },
+    { label: "Hotel", value: "Same hotel, one room per couple", tone: "" }
   ],
 
   decided: [
-    "Everyone flies together from Dallas (DFW) on the same flight.",
-    "We stay at the same hotel, with a separate room for each couple. Each couple books their own room.",
+    "We all fly from Dallas (DFW), ideally on the same flight.",
+    "We stay at the same hotel, with a separate room for each couple. Everyone books their own flights and room.",
     "We are skipping Formula 1 Grand Prix week (Oct 28 to Nov 1) because of crowds and cost."
   ],
 
@@ -71,11 +70,7 @@ window.TRIP = {
       "Book about 3 to 6 months out for non-holiday dates. Set a Google Flights alert for DFW to MEX now.",
       "Tuesday, Wednesday and Saturday are usually the cheapest days to fly."
     ],
-    booked: [
-      ["Couple 1", "Not booked"],
-      ["Couple 2", "Not booked"],
-      ["Couple 3", "Not booked"]
-    ]
+    booking: "Everyone books their own flights. Try to land on the same flight if you can."
   },
 
   hotels: {
@@ -93,11 +88,7 @@ window.TRIP = {
       "Confirm there is an elevator. Mexico City sits at 7,350 ft, and stairs feel harder.",
       "Add roughly 20% for taxes on top of the rates shown."
     ],
-    booked: [
-      ["Couple 1", "Not booked"],
-      ["Couple 2", "Not booked"],
-      ["Couple 3", "Not booked"]
-    ]
+    booking: "Each couple books their own room at the same hotel."
   },
 
   guide: {

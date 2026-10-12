@@ -4,5 +4,5 @@
   "version": "1.0.0",
   "description": "Family trip planning hub for Mexico City, fall 2027",
   "engines": { "node": ">=20" },
-  "scripts": { "dev": "vercel dev", "check": "node --check app.js && node --check data.js && node --check api/hello.js && node --check api/visits.js" }
+  "scripts": { "dev": "vercel dev", "check": "node --check app.js && node --check data.js" }
 }
