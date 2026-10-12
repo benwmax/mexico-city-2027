@@ -286,10 +286,8 @@ window.TRIP = {
 
   guide: {
     events: [
-      ["Alebrijes parade", "Mid Oct (likely Sat Oct 16)", "Giant painted creatures walk from the Zócalo to the Ángel. Free. They stay on display on Reforma until about Nov 8."],
-      ["Catrinas procession", "Likely Sun Oct 24, evening", "Hundreds of people dressed as catrinas walk from the Ángel to the Zócalo. Free."],
-      ["Main Día de Muertos parade", "Likely Sat Oct 30", "Falls after our trip, if the pattern holds."],
-      ["Mixquic cemetery vigil", "Night of Nov 1", "Famous candlelit vigil. Outside our dates, and a long trip from the city."]
+      ["Alebrijes on Reforma", "On display during our trip", "The giant painted creatures from the Alebrijes parade stay on display along Paseo de la Reforma until about Nov 8. Free."],
+      ["Catrinas procession", "Likely Sun Oct 24, evening", "Hundreds of people dressed as catrinas walk from the Ángel to the Zócalo. Free. The date is estimated from the 2026 pattern."]
     ],
     notes: [
       "Altitude: Mexico City is 7,350 ft. Take it easy on day one, drink lots of water, and go light on alcohol at first.",
