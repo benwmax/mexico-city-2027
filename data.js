@@ -181,19 +181,22 @@ window.TRIP = {
         ],
         book: "No booking needed."
       }
-    ],
-    fit: {
-      title: "How the days could fit",
-      note: "A sketch only. The real day-by-day comes once the dates and hotel are final.",
-      days: [
-        ["Thu Oct 21", "Arrive, settle in Condesa, easy dinner nearby. Take it slow while we adjust to the altitude."],
-        ["Fri Oct 22", "Historic center in the morning. Lucha libre in the evening."],
-        ["Sat Oct 23", "Casa Azul and Coyoacán. Dinner somewhere special."],
-        ["Sun Oct 24", "Anthropology Museum and Chapultepec. Catrinas procession in the evening."],
-        ["Mon Oct 25", "Teotihuacán. Most museums are closed today, so this is the day to be out of the city."],
-        ["Tue Oct 26", "Xochimilco boat ride in the morning, then fly home."]
-      ]
-    }
+    ]
+  },
+
+  // Itinerary: a placeholder sketch until dates and hotel are settled.
+  itinerary: {
+    summary: "The day-by-day plan comes once the dates and hotel are settled. Until then, here is a rough sketch of how the days could fit around what is open.",
+    title: "Draft sketch",
+    note: "Not a plan yet. Nothing here is booked.",
+    days: [
+      ["Thu Oct 21", "Arrive, settle in Condesa, easy dinner nearby. Take it slow while we adjust to the altitude."],
+      ["Fri Oct 22", "Historic center in the morning. Lucha libre in the evening."],
+      ["Sat Oct 23", "Casa Azul and Coyoacán. Dinner somewhere special."],
+      ["Sun Oct 24", "Anthropology Museum and Chapultepec. Catrinas procession in the evening."],
+      ["Mon Oct 25", "Teotihuacán. Most museums are closed today, so this is the day to be out of the city."],
+      ["Tue Oct 26", "Xochimilco boat ride in the morning, then fly home."]
+    ]
   },
 
   // Food: dishes to try, places to eat, and what to book.

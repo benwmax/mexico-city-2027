@@ -100,8 +100,8 @@
       '<section class="section">' + reveal(
         '<p class="kicker"><i>03</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
         '<div class="tile-row two">' + events + "</div>" +
-        '<p class="note" style="margin-top:.8rem">A sketch of the days is on the Experiences page. The full itinerary comes once the dates and hotel are set.</p>' +
-        '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a></p>') + "</section>" +
+        '<p class="note" style="margin-top:.8rem">A rough sketch of the days is on the Itinerary page. The full plan comes once the dates and hotel are set.</p>' +
+        '<p><a href="#/itinerary">Itinerary →</a> &nbsp; <a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a></p>') + "</section>" +
       '<section class="section">' + reveal('<p class="kicker"><i>04</i>Good to know</p><h2>Before we go</h2><div class="card">' + list(T.guide.notes) + "</div>") + "</section>" +
 
       "</div>";
@@ -143,10 +143,15 @@
         return '<div class="card"><p class="chip">' + esc(e.kind) + "</p><h3>" + esc(e.name) + "</h3>" +
           '<p class="muted">' + esc(e.when) + "</p><p>" + esc(e.how) + "</p>" + list(e.tips) +
           '<p class="note" style="margin-top:.8rem"><b>Booking:</b> ' + esc(e.book) + "</p></div>";
-      }).join("") +
-      "<h2>" + esc(x.fit.title) + '</h2><p class="muted">' + esc(x.fit.note) + "</p>" +
+      }).join("") + "</div>";
+  }
+
+  function itinerary() {
+    var x = T.itinerary;
+    return '<div class="page"><h1>Itinerary</h1><p>' + esc(x.summary) + "</p>" +
+      "<h2>" + esc(x.title) + '</h2><p class="muted">' + esc(x.note) + "</p>" +
       '<div class="card"><ul class="timeline" style="margin:0">' +
-      x.fit.days.map(function (d) { return "<li><time>" + esc(d[0]) + "</time><p>" + esc(d[1]) + "</p></li>"; }).join("") +
+      x.days.map(function (d) { return "<li><time>" + esc(d[0]) + "</time><p>" + esc(d[1]) + "</p></li>"; }).join("") +
       "</ul></div></div>";
   }
 
@@ -195,6 +200,7 @@
   var ROUTES = [
     ["", "Home", home],
     ["flights", "Getting there", flights],
+    ["itinerary", "Itinerary", itinerary],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
     ["around", "Getting around", around]
