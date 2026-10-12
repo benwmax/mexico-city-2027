@@ -67,14 +67,6 @@
     var events = T.guide.events.slice(0, 2).map(function (e) {
       return '<div class="tile"><h3>' + esc(e[0]) + '</h3><p class="muted" style="margin-bottom:.3rem">' + esc(e[1]) + "</p><p>" + esc(e[2]) + "</p></div>";
     }).join("");
-    var decisions = T.decisions.length
-      ? T.decisions.map(function (d) {
-          return '<div class="decision"><h3>' + esc(d.q) + "</h3><ul>" +
-            d.options.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") +
-            '</ul><p class="note">' + esc(d.note) + "</p></div>";
-        }).join("") + '<p class="note" style="margin-top:.8rem">Reply in the family group chat to weigh in.</p>'
-      : '<p class="lead">Nothing waiting on anyone right now.</p>';
-
     return '<section class="hero">' + papel() +
       '<div class="hero-copy"><p class="eyebrow">Family trip · Fall 2027</p><h1>Mexico City</h1>' +
       '<p class="tag">Six of us. One unforgettable week.</p>' +
@@ -104,11 +96,6 @@
         '<div class="tile-row two">' + events + "</div>" +
         '<p class="note" style="margin-top:.8rem">A sketch of the days is on the Experiences page. The full itinerary comes once the dates and hotel are set.</p>' +
         '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a> &nbsp; <a href="#/guide">Events guide →</a></p>') + "</section>" +
-
-      '<section class="section">' + reveal('<p class="kicker"><i>04</i>Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
-
-      '<section class="section">' + reveal(
-        '<p class="kicker"><i>05</i>What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
       "</div>";
   }
 
