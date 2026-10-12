@@ -182,6 +182,22 @@
       "<h2>When to book</h2><div class=\"card accent\">" + list(f.book) + "</div></div>";
   }
 
+  function around() {
+    var x = T.around, p = x.airport;
+    return '<div class="page"><h1>Getting around</h1><p>' + esc(x.summary) + "</p>" +
+      '<div class="card accent"><h3>' + esc(p.title) + "</h3>" + list(p.steps) + "</div>" +
+      "<h2>In the city</h2>" +
+      '<div class="card"><ul class="clean">' + x.modes.map(function (m) {
+        return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
+      }).join("") + "</ul></div>" +
+      "<h2>Scams and risks to know</h2>" +
+      '<div class="card"><ul class="clean">' + x.scams.map(function (m) {
+        return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
+      }).join("") + "</ul></div>" +
+      "<h2>Staying safe</h2>" +
+      '<div class="card">' + list(x.tips) + "</div></div>";
+  }
+
   function guide() {
     var g = T.guide;
     return '<div class="page"><h1>Guide</h1><h2>Events around our dates</h2>' +
@@ -199,6 +215,7 @@
     ["stay", "Stay", stay],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
+    ["around", "Around town", around],
     ["guide", "Guide", guide]
   ];
 

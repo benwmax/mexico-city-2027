@@ -6,6 +6,7 @@ window.TRIP = {
 
   // Newest first. Add a line here whenever something changes.
   news: [
+    { date: "Oct 12, 2026", title: "Around town guide added", body: "Airport transfers, rideshare, the Metro, and common scams to watch for." },
     { date: "Oct 12, 2026", title: "Experiences and food guides added", body: "Six things to do, where to eat, and what to book ahead. Note that museums like Casa Azul close on Mondays." },
     { date: "Oct 12, 2026", title: "The trip hub is live", body: "This is where the plan and every update will live." },
     { date: "Oct 11, 2026", title: "Dates narrowed down", body: "Leaning toward Oct 21 to 26, 2027, with Nov 3 to 8 as the backup." },
@@ -243,6 +244,43 @@ window.TRIP = {
       "About 30 days out (late Sep 2027): Contramar, Pujol, Quintonil. Set a calendar reminder.",
       "2 to 3 weeks out: Rosetta and Máximo Bistrot.",
       "Everything else: just walk in."
+    ]
+  },
+
+  // Getting around and staying safe. No prices on the site; they live in the research notes.
+  around: {
+    summary: "Mexico City is easy to get around and, with normal big-city habits, safe for visitors. For six of us with luggage, rideshare and official taxis do most of the work.",
+    airport: {
+      title: "From the airport to the hotel",
+      steps: [
+        "Use an official prepaid taxi. Buy the ticket at the Sitio or Taxi Autorizado booth inside arrivals, before the exit doors. Keep the receipt and give it to the driver.",
+        "Six people with bags will need two taxis or a larger vehicle. Ask at the booth.",
+        "Condesa is about 25 to 50 minutes away, depending on traffic.",
+        "Skip anyone who approaches you in arrivals, the parking area or outside, and don't let anyone carry bags you didn't ask them to.",
+        "Uber and DiDi pickups at the terminal were reported banned in March 2026 and may still be unreliable. Check the airport's current rules before we fly. Rideshare to the airport for the flight home is fine."
+      ]
+    },
+    modes: [
+      ["Uber and DiDi", "The default for most trips. Pay in the app, check the plate, and watch the route. Best at night and between neighborhoods. Two cars for six."],
+      ["Metro", "Very cheap and fast for the historic center, but crowded. Avoid rush hour (7 to 9am, 6 to 8pm), keep valuables in front pockets, and don't flash your phone. Some cars are reserved for women."],
+      ["Metrobús", "Bus lanes with their own stations. A good daytime option along main avenues, and a calmer pick than the Metro at rush hour."],
+      ["Taxis", "Only official stands, hotel-booked taxis or app-based ones. Never hail one off the street at night."],
+      ["Walking", "Condesa, Roma and the historic center are very walkable. After dark, stay in the neighborhood you're eating in and ride between areas."]
+    ],
+    scams: [
+      ["Overpriced airport taxis", "Touts in arrivals quote far above the official fare. Use only the prepaid booth."],
+      ["Rideshare cancellation tricks", "A driver cancels and asks for cash, or takes a long detour. Pay in the app only, and rebook if asked to pay off-app."],
+      ["Pickpockets and phone grabs", "Worst at the Zócalo, Bellas Artes, Calle Madero and on the Metro. Use a zipped crossbody bag, and keep your phone off café tables."],
+      ["Fake police", "Mostly after 10pm. Ask for a badge name and number, show a photocopy of the passport, and never unlock your phone or pay cash on the spot."],
+      ["ATM trouble", "Use ATMs inside bank branches during business hours. Refuse any taxi detour to an ATM."]
+    ],
+    tips: [
+      "Carry a photocopy of each passport, and leave the originals in the hotel safe.",
+      "Take one card and a day's cash, not your whole wallet.",
+      "Save the hotel's address and a few Spanish phrases in your phone.",
+      "Share rides with the group by messaging plates and routes to one another.",
+      "Drink bottled or filtered water, never from the tap.",
+      "Some neighborhoods, such as Tepito and Doctores, are best left alone, and the airport area is best avoided at night. Lucha libre is in Doctores, so take a rideshare there and back."
     ]
   },
 
