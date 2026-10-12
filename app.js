@@ -125,8 +125,7 @@
     return '<div class="page"><h1>Getting there</h1><p>' + esc(f.summary) + "</p>" +
       '<div class="card"><h3>Airlines, DFW to Mexico City</h3><div class="table-wrap"><table><tr><th>Airline</th><th>Nonstops</th><th>Note</th></tr>' +
       f.airlines.map(function (a) { return "<tr><td>" + esc(a[0]) + "</td><td>" + esc(a[1]) + "</td><td>" + esc(a[2]) + "</td></tr>"; }).join("") +
-      "</table></div></div>" +
-      '<div class="card"><h3>Booking</h3><p>' + esc(f.booking) + "</p></div></div>";
+      "</table></div></div></div>";
   }
 
   // Hidden until lodging is decided: add ["stay", "Stay", stay] back to ROUTES to show it.
