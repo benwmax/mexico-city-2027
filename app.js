@@ -166,7 +166,12 @@
       "<h2>Where to eat</h2>" +
       f.eat.map(function (r) {
         return '<div class="card ' + (r.special ? "accent" : "") + '"><h3>' + esc(r.name) + (r.special ? " " + pill("Plan ahead", "pick") : "") + "</h3>" +
-          '<p class="muted">' + esc(r.area) + " · " + esc(r.style) + "</p><p>" + esc(r.note) + '</p><p class="note"><b>Booking:</b> ' + esc(r.book) + "</p></div>";
+          '<p class="muted">' + esc(r.area) + " · " + esc(r.style) + "</p><p>" + esc(r.note) + "</p>" +
+          (r.more ? '<p class="muted">' + esc(r.more) + "</p>" : "") +
+          '<p class="note"><b>Booking:</b> ' + esc(r.book) + "</p>" +
+          '<p class="links">' + (r.links || []).concat([["Map", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + r.area + " Mexico City")]]).map(function (l) {
+            return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + " ↗</a>";
+          }).join("") + "</p></div>";
       }).join("") +
       "<h2>Markets</h2>" +
       '<div class="card"><ul class="clean">' + f.markets.map(function (m) {
