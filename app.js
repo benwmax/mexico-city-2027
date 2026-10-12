@@ -199,7 +199,7 @@
     ["flights", "Getting there", flights],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
-    ["around", "Around town", around],
+    ["around", "Getting around", around],
     ["guide", "Guide", guide]
   ];
 
