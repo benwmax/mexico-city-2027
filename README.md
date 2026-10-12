@@ -6,7 +6,7 @@ A small mobile-first, read-only site for the family to follow the trip plans. Pl
 Home, Dates, Flights, Stay and Guide, all driven by `data.js`.
 
 ## Updating content
-Edit `data.js` (dates, hotels, flight info, to-dos). Pushing to `main` redeploys on Vercel automatically.
+Edit `data.js`: add a line to `news` for each update, keep `decisions` to what is still open, and change dates, hotels or to-dos as plans firm up. Pushing to `main` redeploys on Vercel automatically.
 
 ## Deploy
 Import the repo in Vercel and deploy. No settings or environment variables are needed.

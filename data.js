@@ -1,19 +1,34 @@
-// Trip content. Edit this file to update the site. No sensitive info here (no passport or confirmation numbers).
+// Trip content. Edit this file to update the site. Plans only: no prices, no personal or booking details.
 window.TRIP = {
   start: "2027-10-21",
   end: "2027-10-26",
-  updated: "2026-10-11",
+  updated: "Oct 12, 2026",
 
-  status: [
-    { label: "Dates", value: "Leaning Oct 21 to 26, 2027", tone: "warn" },
-    { label: "Flights", value: "Everyone books their own", tone: "" },
-    { label: "Hotel", value: "Same hotel, one room per couple", tone: "" }
+  // Newest first. Add a line here whenever something changes.
+  news: [
+    { date: "Oct 12, 2026", title: "The trip hub is live", body: "This is where the plan and every update will live." },
+    { date: "Oct 11, 2026", title: "Dates narrowed down", body: "Leaning toward Oct 21 to 26, 2027, with Nov 3 to 8 as the backup." },
+    { date: "Oct 11, 2026", title: "We're skipping Grand Prix week", body: "The Mexico City F1 race lands on Día de Muertos weekend in 2027, so we're going the week before." }
+  ],
+
+  // Questions the group still needs to settle. Remove one once it's decided.
+  decisions: [
+    {
+      q: "Which dates?",
+      options: ["Oct 21 to 26 (recommended)", "Nov 3 to 8 (backup)"],
+      note: "Needed before anyone books flights or rooms."
+    },
+    {
+      q: "Which hotel?",
+      options: ["Condesa DF (top pick)", "Hotel Carlota", "Casa Decu", "Camino Real Polanco"],
+      note: "Needed before anyone books rooms. We all stay at the same one."
+    }
   ],
 
   decided: [
     "We all fly from Dallas (DFW), ideally on the same flight.",
     "We stay at the same hotel, with a separate room for each couple. Everyone books their own flights and room.",
-    "We are skipping Formula 1 Grand Prix week (Oct 28 to Nov 1) because of crowds and cost."
+    "We're skipping Formula 1 Grand Prix week (Oct 28 to Nov 1) because of crowds and cost."
   ],
 
   dates: [
@@ -25,29 +40,26 @@ window.TRIP = {
         "Altars and marigold markets are going up around the city.",
         "The giant alebrije sculptures line Paseo de la Reforma.",
         "The Catrinas procession will likely be Sun Oct 24 (estimated from the 2026 pattern; the city confirms in summer 2027).",
-        "We fly home before the F1 crowds and prices arrive around Oct 28.",
-        "Thursday out and Tuesday back avoids the priciest flight days."
-      ],
-      cost: "About $2,200 to $4,100 per couple, all in"
+        "We fly home before the F1 crowds arrive around Oct 28.",
+        "Thursday out and Tuesday back avoids the busiest flight days."
+      ]
     },
     {
       name: "Wed Nov 3 to Mon Nov 8, 2027",
       tag: "Backup",
       why: [
-        "Lower prices and far smaller crowds after the holiday.",
+        "Far smaller crowds after the holiday.",
         "Some altars stay up, and the alebrijes remain on Reforma until about Nov 8.",
         "The trade-off is that we miss the build-up and the holiday itself."
-      ],
-      cost: "Likely a bit cheaper than the recommended dates"
+      ]
     },
     {
       name: "Oct 28 to Nov 2, 2027",
       tag: "Skipping",
       why: [
         "The Mexico City Grand Prix is Oct 29 to 31, on the same weekend as Día de Muertos.",
-        "Expect the highest hotel and flight prices of the whole fall, plus the biggest crowds."
-      ],
-      cost: "About $2,400 to $4,300 per couple, or more"
+        "Expect the biggest crowds and the highest prices of the whole fall."
+      ]
     }
   ],
 
@@ -58,35 +70,29 @@ window.TRIP = {
       ["Aeromexico", "1 nonstop a day", ""],
       ["Volaris", "1 nonstop a day", "Low-cost, so bags and seats cost extra"]
     ],
-    fares: [
-      ["Late Sept to mid Oct", "$180 to $350"],
-      ["Oct 20 to 27", "$250 to $400"],
-      ["Oct 28 to Nov 3 (F1 + Muertos)", "$400 to $700"],
-      ["Nov 3 to 20", "$200 to $350"]
-    ],
     tips: [
       "Search for 6 seats, then for 2. If the price jumps at 6, the cheapest fare has fewer than six seats left, so book the same flight as two or three reservations.",
       "Skip Basic Economy if you want to sit together.",
-      "Book about 3 to 6 months out for non-holiday dates. Set a Google Flights alert for DFW to MEX now.",
+      "Book about 3 to 6 months out. Set a Google Flights alert for DFW to MEX now.",
       "Tuesday, Wednesday and Saturday are usually the cheapest days to fly."
     ],
     booking: "Everyone books their own flights. Try to land on the same flight if you can."
   },
 
   hotels: {
-    summary: "One hotel, three rooms. A hotel with 30 or more rooms is safer, since small guesthouses can sell out between bookings.",
+    summary: "One hotel, a room for each couple. A hotel with 30 or more rooms is safer, since small guesthouses can sell out between bookings.",
     list: [
-      { name: "Condesa DF", area: "Condesa", rate: "~$170 to $330", note: "40 rooms, rooftop over Parque España, quiet street, very walkable.", pick: true },
-      { name: "Hotel Carlota", area: "Juárez", rate: "~$150 to $270", note: "36 rooms, pool, restaurant, close to Reforma." },
-      { name: "Casa Decu", area: "Condesa / Roma", rate: "~$110 to $190", note: "Best value, rooftop bar. Only 16 rooms, so book all three the same day." },
-      { name: "Camino Real Polanco", area: "Polanco", rate: "~$240 to $480", note: "715 rooms, always has availability, elevators, pools, full service." },
-      { name: "Las Alcobas", area: "Polanco", rate: "~$320 to $650", note: "Splurge: intimate luxury with a spa." }
+      { name: "Condesa DF", area: "Condesa", note: "40 rooms, rooftop over Parque España, quiet street, very walkable.", pick: true },
+      { name: "Hotel Carlota", area: "Juárez", note: "36 rooms, pool, restaurant, close to Reforma." },
+      { name: "Casa Decu", area: "Condesa / Roma", note: "Great value with a rooftop bar. Only 16 rooms, so book all three the same day." },
+      { name: "Camino Real Polanco", area: "Polanco", note: "715 rooms, always has availability, elevators, pools, full service." },
+      { name: "Las Alcobas", area: "Polanco", note: "Splurge: intimate luxury with a spa." }
     ],
     tips: [
       "Check that three rooms are open for our exact dates, then all three couples book on the same day with free cancellation.",
       "Book the same room type, then email the hotel all three confirmation numbers and ask for rooms near each other.",
       "Confirm there is an elevator. Mexico City sits at 7,350 ft, and stairs feel harder.",
-      "Add roughly 20% for taxes on top of the rates shown."
+      "Add roughly 20% for taxes on top of the rates the hotel shows."
     ],
     booking: "Each couple books their own room at the same hotel."
   },
@@ -108,6 +114,7 @@ window.TRIP = {
     todo: [
       "Check that all six passports are valid (many airlines want 6 months left).",
       "Set a Google Flights alert for DFW to MEX.",
+      "Pick the dates and the hotel.",
       "Book flights and rooms (early 2027).",
       "Watch for the city's event dates (announced in summer 2027).",
       "Book a Xochimilco boat evening and any tours that sell out.",
