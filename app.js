@@ -244,7 +244,20 @@
     document.title = (route[0] ? route[1] + " · " : "") + "Mexico City 2027";
     window.scrollTo(0, 0);
     setupReveal();
+    var cur = document.querySelector("#tabs [aria-current]");
+    if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest", inline: "center" });
+    tabFade();
   }
+
+  // Fade the tab bar edges only when tabs are scrolled out of view.
+  function tabFade() {
+    var t = document.getElementById("tabs");
+    if (!t) return;
+    t.classList.toggle("fade-r", t.scrollLeft + t.clientWidth < t.scrollWidth - 4);
+    t.classList.toggle("fade-l", t.scrollLeft > 4);
+  }
+  document.getElementById("tabs").addEventListener("scroll", tabFade, { passive: true });
+  window.addEventListener("resize", tabFade);
 
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-scroll]");
