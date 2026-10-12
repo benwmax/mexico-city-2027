@@ -67,9 +67,6 @@
     var events = T.guide.events.slice(0, 2).map(function (e) {
       return '<div class="tile"><h3>' + esc(e[0]) + '</h3><p class="muted" style="margin-bottom:.3rem">' + esc(e[1]) + "</p><p>" + esc(e[2]) + "</p></div>";
     }).join("");
-    var news = T.news.map(function (x) {
-      return "<li><time>" + esc(x.date) + "</time><h3>" + esc(x.title) + "</h3><p>" + esc(x.body) + "</p></li>";
-    }).join("");
     var decisions = T.decisions.length
       ? T.decisions.map(function (d) {
           return '<div class="decision"><h3>' + esc(d.q) + "</h3><ul>" +
@@ -114,12 +111,10 @@
         '<p class="note" style="margin-top:.8rem">A sketch of the days is on the Experiences page. The full itinerary comes once the dates and hotel are set.</p>' +
         '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a> &nbsp; <a href="#/guide">Events guide →</a></p>') + "</section>" +
 
-      '<section class="section">' + reveal('<p class="kicker"><i>05</i>What\'s new</p><h2>Latest updates</h2><ul class="timeline">' + news + "</ul>") + "</section>" +
-
-      '<section class="section">' + reveal('<p class="kicker"><i>06</i>Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
+      '<section class="section">' + reveal('<p class="kicker"><i>05</i>Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker"><i>07</i>What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
+        '<p class="kicker"><i>06</i>What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
       "</div>";
   }
 
