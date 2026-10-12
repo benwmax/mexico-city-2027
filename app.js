@@ -244,7 +244,11 @@
     var b = e.target.closest && e.target.closest("[data-scroll]");
     if (b) {
       var el = document.getElementById(b.getAttribute("data-scroll"));
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) {
+        var bar = document.querySelector(".chrome");
+        var top = el.getBoundingClientRect().top + window.pageYOffset - (bar ? bar.offsetHeight : 0);
+        window.scrollTo({ top: top, behavior: "smooth" });
+      }
     }
   });
 
