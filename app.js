@@ -71,7 +71,7 @@
       '<div class="hero-copy"><p class="eyebrow">Family trip · Fall 2027</p><h1>Mexico City</h1>' +
       '<p class="tag">Six of us. One unforgettable week.</p>' +
       '<div class="hero-meta"><div><b>' + n + '</b><span>days to go</span></div>' +
-      '<div class="when"><span>Proposed</span><b>Oct 21 – 26, 2027</b></div></div>' +
+      '<div class="when"><span>Proposed</span><b>Thu Oct 21 –<br>Tue Oct 26</b></div></div>' +
       '<button class="btn-cta" type="button" data-scroll="story">See the plan ↓</button></div>' +
       '<div class="hero-art">' + skyline() + "</div></section>" +
 
@@ -87,9 +87,9 @@
 
       '<section class="section">' + reveal(
         '<p class="kicker"><i>02</i>When we go</p><h2>The week before the crowds</h2>' +
-        '<div class="feature"><span class="chip">Proposed</span><h3>Oct 21 – 26, 2027</h3>' +
-        "<ul><li>Altars, marigolds and parades are building across the city.</li><li>We're home before Grand Prix and Día de Muertos weekend packs the place.</li></ul>" +
-        '<a href="#/dates">See the proposed dates →</a></div>') + "</section>" +
+        '<div class="feature"><span class="chip">Proposed</span><h3>Thu Oct 21 –<br>Tue Oct 26, 2027</h3>' +
+        "<ul>" + T.dates.filter(function (d) { return d.pick; })[0].why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>" +
+        "</div>") + "</section>" +
 
       '<section class="section">' + reveal(
         '<p class="kicker"><i>03</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
@@ -101,6 +101,7 @@
       "</div>";
   }
 
+  // Hidden: dates now live on the home page. Add ["dates", "Proposed Dates", dates] back to ROUTES to show it.
   function dates() {
     return '<div class="page"><h1>Proposed Dates</h1><p class="muted">F1 week overlaps Día de Muertos in 2027, so that stretch is the busiest of the fall.</p>' +
       T.dates.map(function (d) {
@@ -187,7 +188,6 @@
 
   var ROUTES = [
     ["", "Home", home],
-    ["dates", "Proposed Dates", dates],
     ["flights", "Getting there", flights],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
