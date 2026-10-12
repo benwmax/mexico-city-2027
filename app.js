@@ -102,7 +102,7 @@
         '<div class="tile-row two">' + events + "</div>" +
         '<p class="note" style="margin-top:.8rem">A rough sketch of the days is on the Itinerary page. The full plan comes once the dates and hotel are set.</p>' +
         '<p><a href="#/itinerary">Itinerary →</a> &nbsp; <a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a></p>') + "</section>" +
-      '<section class="section">' + reveal('<p class="kicker"><i>04</i>Good to know</p><h2>Before we go</h2><div class="flat">' + list(T.guide.notes) + "</div>") + "</section>" +
+      '<section class="section band">' + reveal('<p class="kicker"><i>04</i>Good to know</p><h2>Before we go</h2><div class="tile-row two">' + T.guide.notes.map(function (n) { var i = n.indexOf(": "); return '<div class="tile"><h3>' + esc(n.slice(0, i)) + "</h3><p>" + esc(n.slice(i + 2)) + "</p></div>"; }).join("") + "</div>") + "</section>" +
 
       "</div>";
   }
@@ -118,7 +118,7 @@
 
   function flights() {
     var f = T.flights;
-    return '<div class="page"><h1>Getting there</h1><p>' + esc(f.summary) + "</p>" +
+    return '<div class="page"><h1>Flights</h1><p>' + esc(f.summary) + "</p>" +
       '<div class="card"><h3>Airlines, DFW to Mexico City</h3><div class="table-wrap"><table><tr><th>Airline</th><th>Nonstops</th><th>Note</th></tr>' +
       f.airlines.map(function (a) { return "<tr><td>" + esc(a[0]) + "</td><td>" + esc(a[1]) + "</td><td>" + esc(a[2]) + "</td></tr>"; }).join("") +
       "</table></div></div></div>";
@@ -138,12 +138,14 @@
 
   function experiences() {
     var x = T.experiences;
-    return '<div class="page"><h1>Experiences</h1><p>' + esc(x.summary) + "</p>" +
+    return '<div class="page"><h1>Experiences</h1><p>' + esc(x.summary) + '</p><div class="cards">' +
       x.list.map(function (e) {
+        var shown = e.tips.slice(0, 3), rest = e.tips.slice(3);
         return '<div class="card"><p class="chip">' + esc(e.kind) + "</p><h3>" + esc(e.name) + "</h3>" +
-          '<p class="muted">' + esc(e.when) + "</p><p>" + esc(e.how) + "</p>" + list(e.tips) +
-          '<p class="note" style="margin-top:.8rem"><b>Booking:</b> ' + esc(e.book) + "</p></div>";
-      }).join("") + "</div>";
+          '<dl class="facts"><div><dt>When</dt><dd>' + esc(e.when) + '</dd></div><div class="book"><dt>Booking</dt><dd>' + esc(e.book) + "</dd></div></dl>" +
+          "<p>" + esc(e.how) + "</p>" + list(shown) +
+          (rest.length ? '<details class="more"><summary>More tips</summary>' + list(rest) + "</details>" : "") + "</div>";
+      }).join("") + "</div></div>";
   }
 
   function itinerary() {
@@ -155,29 +157,40 @@
       "</ul></div></div>";
   }
 
+  function links(r) {
+    return '<p class="links">' + (r.links || []).concat([["Map", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + r.area + " Mexico City")]]).map(function (l) {
+      return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + " ↗</a>";
+    }).join("") + "</p>";
+  }
+
   function food() {
     var f = T.food;
+    var walk = function (r) { return /^Walk in/.test(r.book); };
+    var plan = f.eat.filter(function (r) { return !walk(r); }), easy = f.eat.filter(walk);
+    function chip(id, label) { return '<button type="button" data-scroll="' + id + '">' + label + "</button>"; }
     return '<div class="page"><h1>Food</h1><p>' + esc(f.summary) + "</p>" +
-      "<h2>What to eat</h2>" +
+      '<nav class="chips" aria-label="On this page">' + chip("eat", "What to eat") + chip("plan", "Plan ahead") + chip("walk", "Walk in") + chip("markets", "Markets") + chip("tips", "Eating well") + "</nav>" +
+      '<h2 id="eat">What to eat</h2>' +
       '<div class="flat"><ul class="clean">' + f.dishes.map(function (d) {
         return "<li><b>" + esc(d[0]) + '</b><br><span class="muted">' + esc(d[1]) + "</span></li>";
       }).join("") + "</ul></div>" +
-      "<h2>Where to eat</h2>" +
-      f.eat.map(function (r) {
-        return '<div class="card ' + (r.special ? "accent" : "") + '"><h3>' + esc(r.name) + (r.special ? " " + pill("Plan ahead", "pick") : "") + "</h3>" +
+      '<h2 id="plan">Plan ahead</h2><p class="muted">Book these early. Dates for each are on the card.</p><div class="cards">' +
+      plan.map(function (r) {
+        return '<div class="card ' + (r.special ? "accent" : "") + '"><h3>' + esc(r.name) + "</h3>" +
           '<p class="muted">' + esc(r.area) + " · " + esc(r.style) + "</p><p>" + esc(r.note) + "</p>" +
           (r.more ? '<p class="muted">' + esc(r.more) + "</p>" : "") +
-          '<p class="note"><b>Booking:</b> ' + esc(r.book) + "</p>" +
-          '<p class="links">' + (r.links || []).concat([["Map", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + r.area + " Mexico City")]]).map(function (l) {
-            return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + " ↗</a>";
-          }).join("") + "</p></div>";
-      }).join("") +
-      "<h2>Markets</h2>" +
+          '<p class="bookline"><b>Booking:</b> ' + esc(r.book) + "</p>" + links(r) + "</div>";
+      }).join("") + "</div>" +
+      '<h2 id="walk">Walk in</h2><p class="muted">No reservation needed.</p><div class="flat"><ul class="clean">' +
+      easy.map(function (r) {
+        return "<li><b>" + esc(r.name) + '</b> <span class="muted">' + esc(r.area) + " · " + esc(r.style) + "</span><br>" + esc(r.note) + links(r) + "</li>";
+      }).join("") + "</ul></div>" +
+      '<h2 id="markets">Markets</h2>' +
       '<div class="flat"><ul class="clean">' + f.markets.map(function (m) {
         return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
       }).join("") + "</ul></div>" +
       "<h2>Street stalls</h2><div class=\"flat\">" + list(f.stalls) + "</div>" +
-      "<h2>Eating well</h2><div class=\"flat\">" + list(f.tips) + "</div>" +
+      '<h2 id="tips">Eating well</h2><div class="flat">' + list(f.tips) + "</div>" +
       "<h2>When to book</h2><div class=\"card accent\">" + list(f.book) + "</div></div>";
   }
 
@@ -199,7 +212,7 @@
 
   var ROUTES = [
     ["", "Home", home],
-    ["flights", "Getting there", flights],
+    ["flights", "Flights", flights],
     ["itinerary", "Itinerary", itinerary],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
