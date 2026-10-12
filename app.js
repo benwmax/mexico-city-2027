@@ -14,62 +14,50 @@
     return Math.max(0, Math.ceil(ms / 86400000));
   }
 
-  // Papel picado banner along the top of the hero.
+  // A thin string of outlined pennants in gold.
   function papel() {
-    var cols = ["#d9467a", "#f2a541", "#2a9d8f", "#c8553d", "#4b6fd1"];
     var out = "";
     for (var i = 0; i < 15; i++) {
       var x = -10 + i * 58;
       var sag = 6 + Math.sin(i / 14 * Math.PI) * 14;
-      out += '<g transform="translate(' + x + " " + (sag - 4) + ')">' +
-        '<path d="M0 0h44v34l-8-6-6 6-8-6-8 6-6-6-8 6z" fill="' + cols[i % 5] + '" opacity=".92"/>' +
-        '<circle cx="22" cy="12" r="4" fill="#fff" opacity=".75"/></g>';
+      out += '<path transform="translate(' + x + " " + (sag - 2) + ')" d="M0 0h40v26l-7-5-6 5-7-5-7 5-6-5-7 5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>';
     }
-    return '<svg class="papel" viewBox="0 0 800 60" preserveAspectRatio="xMidYMin slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M-10 4 Q400 40 810 4" stroke="#ffe2a8" stroke-width="1.5" fill="none" opacity=".7"/>' + out + "</svg>";
+    return '<svg class="papel" viewBox="0 0 800 50" preserveAspectRatio="xMidYMin slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M-10 4 Q400 36 810 4" stroke="currentColor" stroke-width="1" fill="none" opacity=".6"/>' + out + "</svg>";
   }
 
-  // Illustrated skyline: Popocatépetl, Torre Latinoamericana, Bellas Artes, the Ángel and jacarandas.
+  // Line-art skyline: Popocatépetl, Torre Latinoamericana, Bellas Artes and the Ángel, in ink with a gold sun.
   function skyline() {
-    return '<svg viewBox="60 120 600 340" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Illustrated Mexico City skyline at sunset" xmlns="http://www.w3.org/2000/svg">' +
-      '<circle class="sun" cx="560" cy="250" r="130" fill="#ffd27a" opacity=".3"/>' +
-      '<circle cx="560" cy="250" r="64" fill="#ffd98c"/>' +
-      // volcano
-      '<path d="M-1500 372 L0 372 L110 340 L220 366 L310 312 L362 236 L388 218 L416 236 L474 316 L570 352 L690 330 L800 366 L2300 366 V460 H-1500Z" fill="#6a2f66" opacity=".92"/>' +
-      '<path d="M362 236 L388 218 L416 236 L402 244 L388 234 L374 246Z" fill="#f7e4d6" opacity=".9"/>' +
-      // far buildings
-      '<g fill="#472250">' +
-      '<rect x="20" y="330" width="26" height="130"/><rect x="50" y="318" width="22" height="142"/><rect x="330" y="340" width="30" height="120"/>' +
-      '<rect x="360" y="326" width="22" height="134"/><rect x="640" y="326" width="28" height="134"/><rect x="672" y="342" width="36" height="118"/>' +
-      '<rect x="716" y="320" width="24" height="140"/><rect x="744" y="338" width="40" height="122"/></g>' +
-      // Torre Latinoamericana
-      '<g fill="#34183f"><rect x="228" y="330" width="52" height="130"/><rect x="238" y="278" width="32" height="54"/>' +
-      '<rect x="246" y="246" width="16" height="34"/><rect x="253" y="196" width="2.4" height="52"/><rect x="249" y="212" width="10" height="2"/></g>' +
+    var f = 'fill="var(--bg)" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"';
+    var g = 'stroke="var(--gold)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"';
+    return '<svg viewBox="60 120 600 340" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Line drawing of the Mexico City skyline" xmlns="http://www.w3.org/2000/svg">' +
+      '<circle cx="560" cy="250" r="64" fill="none" ' + g + '/>' +
+      '<circle cx="560" cy="250" r="84" fill="none" ' + g + ' stroke-dasharray="1 7" opacity=".8"/>' +
+      '<path d="M-1500 372 H0 L110 340 L220 366 L310 312 L362 236 L388 218 L416 236 L474 316 L570 352 L690 330 L800 366 H2300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M362 236 L374 246 L388 234 L402 244 L416 236" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>' +
+      '<g opacity=".45"><rect x="20" y="330" width="26" height="130" ' + f + '/><rect x="50" y="318" width="22" height="142" ' + f + '/>' +
+      '<rect x="330" y="340" width="30" height="120" ' + f + '/><rect x="360" y="326" width="22" height="134" ' + f + '/>' +
+      '<rect x="640" y="326" width="28" height="134" ' + f + '/><rect x="672" y="342" width="36" height="118" ' + f + '/>' +
+      '<rect x="716" y="320" width="24" height="140" ' + f + '/><rect x="744" y="338" width="40" height="122" ' + f + "/></g>" +
+      // tower
+      '<rect x="228" y="330" width="52" height="130" ' + f + '/><rect x="238" y="278" width="32" height="54" ' + f + '/><rect x="246" y="246" width="16" height="34" ' + f + "/>" +
+      '<path d="M254 246 V196 M249 212 H259" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+      '<path d="M236 350h10M236 370h10M262 350h10M262 370h10M246 296h6M258 296h6" stroke="currentColor" stroke-width="1.2" opacity=".6"/>' +
       // Bellas Artes
-      '<g fill="#34183f"><rect x="468" y="368" width="150" height="92"/><path d="M490 368 Q543 296 596 368Z"/>' +
-      '<rect x="538" y="288" width="10" height="16"/><path d="M533 288 Q543 274 553 288Z"/>' +
-      '<path d="M470 368 Q488 346 506 368Z"/><path d="M580 368 Q598 346 616 368Z"/></g>' +
-      '<g fill="#f6b24f" opacity=".85"><rect x="240" y="300" width="4" height="6"/><rect x="256" y="300" width="4" height="6"/>' +
-      '<rect x="240" y="350" width="4" height="6"/><rect x="258" y="372" width="4" height="6"/><rect x="496" y="392" width="5" height="8"/>' +
-      '<rect x="520" y="392" width="5" height="8"/><rect x="570" y="392" width="5" height="8"/><rect x="594" y="392" width="5" height="8"/></g>' +
-      // front layer: the Ángel
-      '<g fill="#1f0f29"><rect x="96" y="420" width="70" height="40"/><rect x="108" y="404" width="46" height="16"/>' +
-      '<rect x="124" y="262" width="14" height="144"/><rect x="118" y="256" width="26" height="9"/></g>' +
-      '<g fill="#f6c25f"><path d="M131 222 L106 204 L116 244 L131 238Z"/><path d="M131 222 L156 204 L146 244 L131 238Z"/>' +
-      '<rect x="127" y="214" width="8" height="42" rx="3"/><circle cx="131" cy="208" r="6"/>' +
-      '<path d="M135 220 L150 196" stroke="#f6c25f" stroke-width="4" stroke-linecap="round"/><circle cx="152" cy="192" r="6" fill="none" stroke="#f6c25f" stroke-width="2.5"/></g>' +
-      // jacaranda trees
-      '<g fill="#7b3a86"><circle cx="30" cy="428" r="34"/><circle cx="64" cy="440" r="30"/><circle cx="214" cy="440" r="32"/><circle cx="660" cy="436" r="34"/>' +
-      '<circle cx="700" cy="446" r="30"/><circle cx="770" cy="432" r="36"/></g>' +
-      '<g fill="#9d58ad" opacity=".8"><circle cx="38" cy="418" r="14"/><circle cx="206" cy="430" r="13"/><circle cx="666" cy="426" r="14"/><circle cx="764" cy="422" r="15"/></g>' +
-      '<rect x="-1500" y="446" width="3800" height="14" fill="#1f0f29"/></svg>';
+      '<rect x="468" y="368" width="150" height="92" ' + f + '/><path d="M490 368 Q543 296 596 368" ' + f + '/><path d="M538 304 V288 M533 288 Q543 274 553 288" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+      '<path d="M488 392v34M512 392v34M574 392v34M598 392v34" stroke="currentColor" stroke-width="1.2" opacity=".6"/>' +
+      // the Ángel
+      '<rect x="96" y="420" width="70" height="40" ' + f + '/><rect x="108" y="404" width="46" height="16" ' + f + '/><rect x="124" y="262" width="14" height="144" ' + f + '/><rect x="118" y="256" width="26" height="9" ' + f + "/>" +
+      '<path d="M131 222 L106 204 L116 244 L131 238 L146 244 L156 204Z" fill="var(--bg)" ' + g + '/><path d="M131 214 V256" ' + g + '/><circle cx="131" cy="207" r="6" fill="var(--bg)" ' + g + '/>' +
+      '<path d="M135 220 L150 196" ' + g + '/><circle cx="152" cy="192" r="5" fill="none" ' + g + "/>" +
+      '<path d="M-1500 446 H2300" stroke="currentColor" stroke-width="2"/></svg>';
   }
 
-  // little illustrated icons
+  // little line icons
   var ICON = {
-    taco: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 34a19 19 0 0 1 38 0z" fill="#f2a541"/><path d="M10 34a14 14 0 0 1 28 0z" fill="#e0643f"/><path d="M12 28c3-5 7-6 9-3 2-4 7-4 9 0 2-2 5-1 6 3z" fill="#2a9d8f"/><rect x="4" y="34" width="40" height="3" rx="1.5" fill="#c8553d"/></svg>',
-    pyramid: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 7 41 38H7z" fill="#e0643f"/><path d="M24 7 41 38H24z" fill="#c8553d"/><path d="M14 31h20M18 24h12M21 17h6" stroke="#f6c25f" stroke-width="2.4" stroke-linecap="round"/><rect x="4" y="38" width="40" height="4" rx="2" fill="#6a2f66"/></svg>',
-    sun: '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="10" fill="#f2a541"/><g stroke="#e0643f" stroke-width="3" stroke-linecap="round"><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.5 10.5l4.2 4.2M33.3 33.3l4.2 4.2M10.5 37.5l4.2-4.2M33.3 14.7l4.2-4.2"/></g></svg>'
+    taco: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 33a18 18 0 0 1 36 0z"/><path d="M12 27c3-4 6-5 8-3 2-4 6-4 8 0 2-2 5-1 6 3"/><path d="M4 37h40"/></svg>',
+    pyramid: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 8 41 38H7z"/><path d="M14 31h20M18 24h12M21 17h6"/><path d="M4 41h40"/></svg>',
+    sun: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="9"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11.3 11.3l4.2 4.2M32.5 32.5l4.2 4.2M11.3 36.7l4.2-4.2M32.5 15.5l4.2-4.2"/></svg>'
   };
 
   function reveal(html) { return '<div class="reveal">' + html + "</div>"; }
@@ -101,7 +89,7 @@
       '<div class="story" id="story">' +
 
       '<section class="section">' + reveal(
-        '<p class="kicker">Why Mexico City</p><h2>A city that has it all</h2>' +
+        '<p class="kicker"><i>01</i>Why Mexico City</p><h2>A city that has it all</h2>' +
         '<p class="lead">One of the great food cities, thousands of years of history, and a color and energy you have to see in person.</p>' +
         '<div class="tile-row three">' +
         '<div class="tile">' + ICON.taco + '<h3>Food worth the flight</h3><p>Street tacos, buzzing markets and world-famous restaurants, all within a short ride.</p></div>' +
@@ -109,29 +97,29 @@
         '<div class="tile">' + ICON.sun + '<h3>Right time to go</h3><p>The rainy season is winding down, and the city starts dressing up for Día de Muertos.</p></div></div>') + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker">When we go</p><h2>The week before the crowds</h2>' +
+        '<p class="kicker"><i>02</i>When we go</p><h2>The week before the crowds</h2>' +
         '<div class="feature"><span class="chip">Proposed</span><h3>Oct 21 – 26, 2027</h3>' +
         "<ul><li>Altars, marigolds and parades are building across the city.</li><li>We're home before Grand Prix and Día de Muertos weekend packs the place.</li></ul>" +
         '<a href="#/dates">See the dates →</a></div>') + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker">Where we stay</p><h2>One hotel, a room for each couple</h2>' +
+        '<p class="kicker"><i>03</i>Where we stay</p><h2>One hotel, a room for each couple</h2>' +
         '<div class="feature teal"><span class="chip">Top pick</span><h3>Condesa</h3>' +
         "<p>Leafy streets, parks, cafés and great restaurants, and easy to get anywhere from. Condesa DF is the first choice, with a few other options ready.</p>" +
         '<a href="#/stay">See the hotels →</a></div>') + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker">What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
+        '<p class="kicker"><i>04</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
         '<div class="tile-row two">' + events + "</div>" +
         '<p class="note" style="margin-top:.8rem">A day-by-day itinerary is coming soon.</p>' +
         '<p><a href="#/guide">More in the guide →</a></p>') + "</section>" +
 
-      '<section class="section">' + reveal('<p class="kicker">What\'s new</p><h2>Latest updates</h2><ul class="timeline">' + news + "</ul>") + "</section>" +
+      '<section class="section">' + reveal('<p class="kicker"><i>05</i>What\'s new</p><h2>Latest updates</h2><ul class="timeline">' + news + "</ul>") + "</section>" +
 
-      '<section class="section">' + reveal('<p class="kicker">Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
+      '<section class="section">' + reveal('<p class="kicker"><i>06</i>Your input</p><h2>Decisions we need</h2>' + decisions) + "</section>" +
 
       '<section class="section">' + reveal(
-        '<p class="kicker">What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
+        '<p class="kicker"><i>07</i>What\'s next</p><h2>Coming up</h2><div class="card">' + list(T.guide.todo.slice(0, 4)) + "</div>") + "</section>" +
       "</div>";
   }
 
