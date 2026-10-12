@@ -64,7 +64,7 @@
 
   function home() {
     var n = daysUntil();
-    var events = T.guide.events.slice(0, 2).map(function (e) {
+    var events = T.guide.events.map(function (e) {
       return '<div class="tile"><h3>' + esc(e[0]) + '</h3><p class="muted" style="margin-bottom:.3rem">' + esc(e[1]) + "</p><p>" + esc(e[2]) + "</p></div>";
     }).join("");
     return '<section class="hero">' + papel() +
@@ -95,7 +95,9 @@
         '<p class="kicker"><i>03</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
         '<div class="tile-row two">' + events + "</div>" +
         '<p class="note" style="margin-top:.8rem">A sketch of the days is on the Experiences page. The full itinerary comes once the dates and hotel are set.</p>' +
-        '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a> &nbsp; <a href="#/guide">Events guide →</a></p>') + "</section>" +
+        '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a></p>') + "</section>" +
+      '<section class="section">' + reveal('<p class="kicker"><i>04</i>Good to know</p><h2>Before we go</h2><div class="card">' + list(T.guide.notes) + "</div>") + "</section>" +
+
       "</div>";
   }
 
@@ -183,24 +185,13 @@
       '<div class="card">' + list(x.tips) + "</div></div>";
   }
 
-  function guide() {
-    var g = T.guide;
-    return '<div class="page"><h1>Guide</h1><h2>Events around our dates</h2>' +
-      g.events.map(function (e) {
-        return '<div class="card"><h3>' + esc(e[0]) + '</h3><p class="muted">' + esc(e[1]) + "</p><p>" + esc(e[2]) + "</p></div>";
-      }).join("") +
-      '<h2>Good to know</h2><div class="card">' + list(g.notes) + "</div>" +
-      '<h2>To-do</h2><div class="card">' + list(g.todo) + "</div></div>";
-  }
-
   var ROUTES = [
     ["", "Home", home],
     ["dates", "Proposed Dates", dates],
     ["flights", "Getting there", flights],
     ["experiences", "Experiences", experiences],
     ["food", "Food", food],
-    ["around", "Getting around", around],
-    ["guide", "Guide", guide]
+    ["around", "Getting around", around]
   ];
 
   function setupReveal() {
