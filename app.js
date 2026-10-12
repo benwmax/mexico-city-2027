@@ -89,7 +89,13 @@
         '<p class="kicker"><i>02</i>When we go</p><h2>The week before the crowds</h2>' +
         '<div class="feature"><span class="chip">Proposed</span><h3>Thu Oct 21 –<br>Tue Oct 26, 2027</h3>' +
         "<ul>" + T.dates.filter(function (d) { return d.pick; })[0].why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>" +
-        "</div>") + "</section>" +
+        "</div>" +
+        (function () {
+          var b = T.dates.filter(function (d) { return d.tag === "Backup"; })[0];
+          return b ? '<div class="decision"><span class="chip">Backup plan</span><h3>' + esc(b.name.replace(", 2027", "")) + "</h3><ul>" +
+            b.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") +
+            '</ul><p class="note">Prices will likely decide which week we book.</p></div>' : "";
+        })()) + "</section>" +
 
       '<section class="section">' + reveal(
         '<p class="kicker"><i>03</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +

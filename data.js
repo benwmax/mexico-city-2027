@@ -9,7 +9,7 @@ window.TRIP = {
     { date: "Oct 12, 2026", title: "Around town guide added", body: "Airport transfers, rideshare, the Metro, and common scams to watch for." },
     { date: "Oct 12, 2026", title: "Experiences and food guides added", body: "Six things to do, where to eat, and what to book ahead. Note that museums like Casa Azul close on Mondays." },
     { date: "Oct 12, 2026", title: "The trip hub is live", body: "This is where the plan and every update will live." },
-    { date: "Oct 11, 2026", title: "Dates narrowed down", body: "Leaning toward Oct 21 to 26, 2027, with Nov 3 to 8 as the backup." },
+    { date: "Oct 11, 2026", title: "Dates narrowed down", body: "Leaning toward Oct 21 to 26, 2027, with Oct 14 to 19 as the backup." },
     { date: "Oct 11, 2026", title: "We're skipping Grand Prix week", body: "The Mexico City F1 race lands on Día de Muertos weekend in 2027, so we're going the week before." }
   ],
 
@@ -17,7 +17,7 @@ window.TRIP = {
   decisions: [
     {
       q: "Which dates?",
-      options: ["Oct 21 to 26 (recommended)", "Nov 3 to 8 (backup)"],
+      options: ["Oct 21 to 26 (recommended)", "Oct 14 to 19 (backup)"],
       note: "Needed before anyone books flights or rooms."
     },
     {
@@ -47,12 +47,13 @@ window.TRIP = {
       ]
     },
     {
-      name: "Wed Nov 3 to Mon Nov 8, 2027",
+      name: "Thu Oct 14 to Tue Oct 19, 2027",
       tag: "Backup",
       why: [
-        "Far smaller crowds after the holiday.",
-        "Some altars stay up, and the alebrijes remain on Reforma until about Nov 8.",
-        "The trade-off is that we miss the build-up and the holiday itself."
+        "The alebrijes parade is likely Sat Oct 16 (estimated from the 2026 pattern).",
+        "Likely fewer crowds and lower prices than the week after (not price-checked yet).",
+        "Same Thursday out and Tuesday back pattern.",
+        "The trade-off is that altars and the Catrinas procession are not up yet."
       ]
     },
     {
