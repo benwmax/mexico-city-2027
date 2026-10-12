@@ -102,7 +102,7 @@
         '<div class="tile-row two">' + events + "</div>" +
         '<p class="note" style="margin-top:.8rem">A rough sketch of the days is on the Itinerary page. The full plan comes once the dates and hotel are set.</p>' +
         '<p><a href="#/itinerary">Itinerary →</a> &nbsp; <a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a></p>') + "</section>" +
-      '<section class="section">' + reveal('<p class="kicker"><i>04</i>Good to know</p><h2>Before we go</h2><div class="card">' + list(T.guide.notes) + "</div>") + "</section>" +
+      '<section class="section">' + reveal('<p class="kicker"><i>04</i>Good to know</p><h2>Before we go</h2><div class="flat">' + list(T.guide.notes) + "</div>") + "</section>" +
 
       "</div>";
   }
@@ -150,7 +150,7 @@
     var x = T.itinerary;
     return '<div class="page"><h1>Itinerary</h1><p>' + esc(x.summary) + "</p>" +
       "<h2>" + esc(x.title) + '</h2><p class="muted">' + esc(x.note) + "</p>" +
-      '<div class="card"><ul class="timeline" style="margin:0">' +
+      '<div class="flat"><ul class="timeline" style="margin:0">' +
       x.days.map(function (d) { return "<li><time>" + esc(d[0]) + "</time><p>" + esc(d[1]) + "</p></li>"; }).join("") +
       "</ul></div></div>";
   }
@@ -159,7 +159,7 @@
     var f = T.food;
     return '<div class="page"><h1>Food</h1><p>' + esc(f.summary) + "</p>" +
       "<h2>What to eat</h2>" +
-      '<div class="card"><ul class="clean">' + f.dishes.map(function (d) {
+      '<div class="flat"><ul class="clean">' + f.dishes.map(function (d) {
         return "<li><b>" + esc(d[0]) + '</b><br><span class="muted">' + esc(d[1]) + "</span></li>";
       }).join("") + "</ul></div>" +
       "<h2>Where to eat</h2>" +
@@ -173,11 +173,11 @@
           }).join("") + "</p></div>";
       }).join("") +
       "<h2>Markets</h2>" +
-      '<div class="card"><ul class="clean">' + f.markets.map(function (m) {
+      '<div class="flat"><ul class="clean">' + f.markets.map(function (m) {
         return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
       }).join("") + "</ul></div>" +
-      "<h2>Street stalls</h2><div class=\"card\">" + list(f.stalls) + "</div>" +
-      "<h2>Eating well</h2><div class=\"card\">" + list(f.tips) + "</div>" +
+      "<h2>Street stalls</h2><div class=\"flat\">" + list(f.stalls) + "</div>" +
+      "<h2>Eating well</h2><div class=\"flat\">" + list(f.tips) + "</div>" +
       "<h2>When to book</h2><div class=\"card accent\">" + list(f.book) + "</div></div>";
   }
 
@@ -186,15 +186,15 @@
     return '<div class="page"><h1>Getting around</h1><p>' + esc(x.summary) + "</p>" +
       '<div class="card accent"><h3>' + esc(p.title) + "</h3>" + list(p.steps) + "</div>" +
       "<h2>In the city</h2>" +
-      '<div class="card"><ul class="clean">' + x.modes.map(function (m) {
+      '<div class="flat"><ul class="clean">' + x.modes.map(function (m) {
         return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
       }).join("") + "</ul></div>" +
       "<h2>Scams and risks to know</h2>" +
-      '<div class="card"><ul class="clean">' + x.scams.map(function (m) {
+      '<div class="flat"><ul class="clean">' + x.scams.map(function (m) {
         return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
       }).join("") + "</ul></div>" +
       "<h2>Staying safe</h2>" +
-      '<div class="card">' + list(x.tips) + "</div></div>";
+      '<div class="flat">' + list(x.tips) + "</div></div>";
   }
 
   var ROUTES = [
