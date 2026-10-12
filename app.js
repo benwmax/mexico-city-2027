@@ -111,8 +111,8 @@
       '<section class="section">' + reveal(
         '<p class="kicker"><i>04</i>What we\'ll do</p><h2>Look what\'s happening that week</h2>' +
         '<div class="tile-row two">' + events + "</div>" +
-        '<p class="note" style="margin-top:.8rem">A day-by-day itinerary is coming soon.</p>' +
-        '<p><a href="#/guide">More in the guide →</a></p>') + "</section>" +
+        '<p class="note" style="margin-top:.8rem">A sketch of the days is on the Experiences page. The full itinerary comes once the dates and hotel are set.</p>' +
+        '<p><a href="#/experiences">Experiences →</a> &nbsp; <a href="#/food">Food guide →</a> &nbsp; <a href="#/guide">Events guide →</a></p>') + "</section>" +
 
       '<section class="section">' + reveal('<p class="kicker"><i>05</i>What\'s new</p><h2>Latest updates</h2><ul class="timeline">' + news + "</ul>") + "</section>" +
 
@@ -152,6 +152,41 @@
       '<div class="card"><h3>Booking</h3><p>' + esc(h.booking) + "</p></div></div>";
   }
 
+  function experiences() {
+    var x = T.experiences;
+    return '<div class="page"><h1>Experiences</h1><p>' + esc(x.summary) + "</p>" +
+      x.list.map(function (e) {
+        return '<div class="card"><p class="chip">' + esc(e.kind) + "</p><h3>" + esc(e.name) + "</h3>" +
+          '<p class="muted">' + esc(e.when) + "</p><p>" + esc(e.how) + "</p>" + list(e.tips) +
+          '<p class="note" style="margin-top:.8rem"><b>Booking:</b> ' + esc(e.book) + "</p></div>";
+      }).join("") +
+      "<h2>" + esc(x.fit.title) + '</h2><p class="muted">' + esc(x.fit.note) + "</p>" +
+      '<div class="card"><ul class="timeline" style="margin:0">' +
+      x.fit.days.map(function (d) { return "<li><time>" + esc(d[0]) + "</time><p>" + esc(d[1]) + "</p></li>"; }).join("") +
+      "</ul></div></div>";
+  }
+
+  function food() {
+    var f = T.food;
+    return '<div class="page"><h1>Food</h1><p>' + esc(f.summary) + "</p>" +
+      "<h2>What to eat</h2>" +
+      '<div class="card"><ul class="clean">' + f.dishes.map(function (d) {
+        return "<li><b>" + esc(d[0]) + '</b><br><span class="muted">' + esc(d[1]) + "</span></li>";
+      }).join("") + "</ul></div>" +
+      "<h2>Where to eat</h2>" +
+      f.eat.map(function (r) {
+        return '<div class="card ' + (r.special ? "accent" : "") + '"><h3>' + esc(r.name) + (r.special ? " " + pill("Plan ahead", "pick") : "") + "</h3>" +
+          '<p class="muted">' + esc(r.area) + " · " + esc(r.style) + "</p><p>" + esc(r.note) + '</p><p class="note"><b>Booking:</b> ' + esc(r.book) + "</p></div>";
+      }).join("") +
+      "<h2>Markets</h2>" +
+      '<div class="card"><ul class="clean">' + f.markets.map(function (m) {
+        return "<li><b>" + esc(m[0]) + '</b><br><span class="muted">' + esc(m[1]) + "</span></li>";
+      }).join("") + "</ul></div>" +
+      "<h2>Street stalls</h2><div class=\"card\">" + list(f.stalls) + "</div>" +
+      "<h2>Eating well</h2><div class=\"card\">" + list(f.tips) + "</div>" +
+      "<h2>When to book</h2><div class=\"card accent\">" + list(f.book) + "</div></div>";
+  }
+
   function guide() {
     var g = T.guide;
     return '<div class="page"><h1>Guide</h1><h2>Events around our dates</h2>' +
@@ -167,6 +202,8 @@
     ["dates", "Dates", dates],
     ["flights", "Getting there", flights],
     ["stay", "Stay", stay],
+    ["experiences", "Experiences", experiences],
+    ["food", "Food", food],
     ["guide", "Guide", guide]
   ];
 

@@ -3,7 +3,7 @@
 A small mobile-first, read-only site for the family to follow the trip plans. Plain HTML/CSS/JS, no build step, no database, no accounts, and nothing stored beyond the plans themselves.
 
 ## Pages
-Home, Dates, Flights, Stay and Guide, all driven by `data.js`.
+Home, Dates, Flights, Stay, Experiences, Food and Guide, all driven by `data.js`.
 
 ## Updating content
 Edit `data.js`: add a line to `news` for each update, keep `decisions` to what is still open, and change dates, hotels or to-dos as plans firm up. Pushing to `main` redeploys on Vercel automatically.
