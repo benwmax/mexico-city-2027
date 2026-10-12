@@ -248,3 +248,19 @@ body.menu-open { overflow: hidden; }
 }
 @media (min-width: 640px) { .drawer, .scrim { display: none; } }
 @media (prefers-reduced-motion: reduce) { .drawer, .drawer.open { transition: none; } }
+
+/* add to home screen */
+.install { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 15; max-width: 440px; margin: 0 auto;
+  display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .22); animation: rise .45s ease both; }
+.install img { border-radius: 11px; flex: none; }
+.install h3 { font-size: 1.1rem; margin: 0 0 .3rem; }
+.install p, .install ol { margin: 0 0 .7rem; font-size: .9rem; line-height: 1.5; color: var(--ink2); }
+.install ol { padding-left: 1.2rem; }
+.install li { margin-bottom: .25rem; }
+.install-actions { display: flex; gap: 10px; }
+.install-actions button, .install-link button { font: 600 .82rem var(--sans); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; min-height: 40px; }
+.install-actions .install-go { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.install-link { margin: 0; }
+.install-link button { border: 0; background: none; color: var(--accent); padding: 12px 0; text-decoration: underline; text-underline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .install { animation: none; } }

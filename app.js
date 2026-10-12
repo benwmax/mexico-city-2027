@@ -294,6 +294,48 @@
     }
   });
 
+  // "Add to Home Screen" banner: steps on iPhone, a one-tap button where the browser allows it.
+  (function () {
+    var UA = navigator.userAgent || "";
+    var isIOS = /iphone|ipad|ipod/i.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var isAndroid = /android/i.test(UA);
+    var standalone = window.navigator.standalone === true || (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+    if (standalone || !(isIOS || isAndroid)) return;
+    var deferred = null, shown = false;
+    var link = document.getElementById("install-link");
+    function dismissed() { try { return localStorage.getItem("installDismissed") === "1"; } catch (e) { return false; } }
+    function remember() { try { localStorage.setItem("installDismissed", "1"); } catch (e) {} }
+    var SHARE = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Share" role="img" style="vertical-align:-3px"><path d="M12 15V4M8 8l4-4 4 4M6 11H5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-1"/></svg>';
+    function close() {
+      var el = document.getElementById("install");
+      if (el) el.remove();
+      shown = false;
+    }
+    function open() {
+      if (shown) return;
+      shown = true;
+      var body;
+      if (deferred) body = "<p>Install this site as an app so it opens full screen from your home screen.</p>";
+      else if (isIOS) body = "<ol><li>Tap the Share button " + SHARE + " in Safari's toolbar.</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol>";
+      else body = "<ol><li>Tap the <b>⋮</b> menu in Chrome.</li><li>Tap <b>Add to Home screen</b> or <b>Install app</b>.</li></ol>";
+      var el = document.createElement("div");
+      el.id = "install"; el.className = "install"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Add to Home Screen");
+      el.innerHTML = '<img src="/apple-touch-icon.png" alt="" width="48" height="48"><div class="install-body"><h3>Keep the trip handy</h3>' + body +
+        '<div class="install-actions">' + (deferred ? '<button type="button" class="install-go">Install</button>' : "") + '<button type="button" class="install-no">' + (deferred ? "Not now" : "Got it") + "</button></div></div>";
+      document.body.appendChild(el);
+      el.querySelector(".install-no").addEventListener("click", function () { remember(); close(); });
+      var go = el.querySelector(".install-go");
+      if (go) go.addEventListener("click", function () {
+        deferred.prompt();
+        deferred.userChoice.then(function () { deferred = null; remember(); close(); });
+      });
+    }
+    window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; });
+    window.addEventListener("appinstalled", function () { remember(); close(); if (link) link.hidden = true; });
+    if (link) { link.hidden = false; link.querySelector("button").addEventListener("click", open); }
+    if (!dismissed()) setTimeout(open, 1800);
+  })();
+
   window.addEventListener("hashchange", render);
   render();
 })();
