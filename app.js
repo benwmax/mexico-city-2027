@@ -233,13 +233,36 @@
     Array.prototype.forEach.call(els, function (el) { io.observe(el); });
   }
 
+  // Slide-over menu for phones (the tab row is hidden below 640px).
+  function setMenu(open, silent) {
+    var d = document.getElementById("drawer"), s = document.getElementById("scrim"), b = document.getElementById("menu-btn");
+    if (!d) return;
+    var was = d.classList.contains("open");
+    d.classList.toggle("open", open);
+    if (open) d.removeAttribute("inert"); else d.setAttribute("inert", "");
+    s.hidden = !open;
+    document.body.classList.toggle("menu-open", open);
+    b.setAttribute("aria-expanded", open ? "true" : "false");
+    if (silent) return;
+    if (open) document.getElementById("menu-close").focus();
+    else if (was) b.focus();
+  }
+  document.getElementById("menu-btn").addEventListener("click", function () { setMenu(true); });
+  document.getElementById("menu-close").addEventListener("click", function () { setMenu(false); });
+  document.getElementById("scrim").addEventListener("click", function () { setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+  window.matchMedia("(min-width: 640px)").addEventListener("change", function (m) { if (m.matches) setMenu(false, true); });
+
   function render() {
     var hash = location.hash.replace(/^#\/?/, "");
     var route = ROUTES.filter(function (r) { return r[0] === hash; })[0] || ROUTES[0];
     document.getElementById("view").innerHTML = route[2]();
-    document.getElementById("tabs").innerHTML = ROUTES.map(function (r) {
+    var navHtml = ROUTES.map(function (r) {
       return '<a href="#/' + r[0] + '"' + (r === route ? ' aria-current="page"' : "") + ">" + esc(r[1]) + "</a>";
     }).join("");
+    document.getElementById("tabs").innerHTML = navHtml;
+    document.getElementById("drawer-nav").innerHTML = navHtml;
+    setMenu(false, true);
     document.getElementById("foot").textContent = "Plans are still taking shape. Last updated " + T.updated + ".";
     document.title = (route[0] ? route[1] + " · " : "") + "Mexico City 2027";
     window.scrollTo(0, 0);

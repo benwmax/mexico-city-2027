@@ -220,3 +220,31 @@ footer p { font-size: .78rem; color: var(--muted); padding-top: 14px; }
 .tabs.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
 .tabs.fade-l { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 36px), transparent); }
 .tabs.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 36px, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, transparent, #000 36px, #000 calc(100% - 36px), transparent); }
+
+/* slide-over menu on phones */
+.top { display: flex; align-items: center; justify-content: space-between; }
+.menu-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -10px; border: 0; background: none; color: var(--ink); cursor: pointer; border-radius: 4px; }
+.scrim { position: fixed; inset: 0; z-index: 20; background: rgba(20, 18, 14, .45); }
+.scrim[hidden] { display: none; }
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 30; width: min(84vw, 320px);
+  background: var(--bg); border-left: 1px solid var(--line); box-shadow: -12px 0 32px rgba(0, 0, 0, .18);
+  padding: 12px 24px calc(24px + env(safe-area-inset-bottom)); overflow-y: auto;
+  transform: translateX(105%); visibility: hidden; transition: transform .28s ease, visibility 0s linear .28s;
+}
+.drawer.open { transform: none; visibility: visible; transition: transform .28s ease; }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; min-height: 44px; margin-bottom: 12px; }
+#drawer-nav { display: flex; flex-direction: column; }
+#drawer-nav a {
+  padding: 15px 0; border-top: 1px solid var(--line); font-family: var(--display); font-size: 1.45rem;
+  color: var(--ink); text-decoration: none;
+}
+#drawer-nav a[aria-current="page"] { color: var(--accent); }
+body.menu-open { overflow: hidden; }
+@media (max-width: 639px) {
+  .menu-btn { display: inline-flex; }
+  .tabs { display: none; }
+  .top { padding-bottom: 6px; }
+}
+@media (min-width: 640px) { .drawer, .scrim { display: none; } }
+@media (prefers-reduced-motion: reduce) { .drawer, .drawer.open { transition: none; } }
